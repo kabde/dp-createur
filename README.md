@@ -51,10 +51,10 @@ Idee → Ebook 60+ pages → PDF → Landing Page → Blog SEO → Ads → Email
 
 ```bash
 # Cloner le repository
-git clone https://github.com/votre-username/dp-skills.git
+git clone https://github.com/kabde/dp-createur.git
 
 # Aller dans le dossier
-cd dp-skills
+cd dp-createur
 ```
 
 Claude Code detecte automatiquement les skills dans le dossier `skills/`.
@@ -155,7 +155,7 @@ Le skill vous guide etape par etape :
 ## Structure du projet
 
 ```
-dp-skills/
+dp-createur/
 ├── README.md                    Ce fichier
 ├── INSTALL.md                   Guide d'installation detaille
 ├── CONTRIBUTING.md              Guide de contribution

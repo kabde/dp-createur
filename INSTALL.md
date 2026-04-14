@@ -38,10 +38,10 @@ Chercher "Claude Code" dans le marketplace de votre IDE.
 
 ```bash
 # Cloner DP Createur
-git clone https://github.com/votre-username/dp-skills.git
+git clone https://github.com/kabde/dp-createur.git
 
 # Aller dans le dossier
-cd dp-skills
+cd dp-createur
 ```
 
 ---
@@ -51,13 +51,13 @@ cd dp-skills
 ### CLI
 
 ```bash
-# Depuis le dossier dp-skills
+# Depuis le dossier dp-createur
 claude
 ```
 
 ### Desktop / IDE
 
-Ouvrir le dossier `dp-skills/` dans l'application ou l'IDE.
+Ouvrir le dossier `dp-createur/` dans l'application ou l'IDE.
 
 ---
 
@@ -76,7 +76,7 @@ Si le skill se lance et pose des questions, l'installation est reussie.
 1. Verifier que vous etes dans le bon dossier :
    ```bash
    pwd
-   # Doit afficher : .../dp-skills
+   # Doit afficher : .../dp-createur
    ```
 
 2. Verifier que les skills existent :
@@ -85,7 +85,7 @@ Si le skill se lance et pose des questions, l'installation est reussie.
    # Doit lister 19 fichiers
    ```
 
-3. Relancer Claude Code depuis le dossier `dp-skills/`
+3. Relancer Claude Code depuis le dossier `dp-createur/`
 
 ---
 
@@ -215,5 +215,5 @@ Si vous voyez du JSON, l'API est active. Si erreur 403/404 :
 
 ## Support
 
-- **Issues** : [github.com/votre-username/dp-skills/issues](https://github.com/votre-username/dp-skills/issues)
+- **Issues** : [github.com/kabde/dp-createur/issues](https://github.com/kabde/dp-createur/issues)
 - **Documentation** : Ce fichier + [README.md](README.md)
