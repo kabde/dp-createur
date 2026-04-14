@@ -1,0 +1,37 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Claude Code
+.claude/
+
+# Generated outputs (user-specific)
+business-profile.md
+ebook en/
+ebook fr/
+blog/
+exports/
+ads/
+emails/
+social/
+funnel/
+analysis/
+landing-pages/
+mediaplan/
+blog-strategy/
+
+# Node
+node_modules/
+package-lock.json
+
+# Temporary
+*.tmp
+*.bak
+/tmp/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
