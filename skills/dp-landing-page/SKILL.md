@@ -1,42 +1,54 @@
 ---
 name: dp-landing-page
-description: "Générateur de landing pages professionnelles, responsives, en HTML standalone avec bouton CTA vers Stripe, Gumroad, Calendly, ou toute URL. Collecte l'identité visuelle (couleurs, style), le contenu produit, les trust badges, la FAQ, et les données SEO. Utilise des CSS custom properties pour le branding. Triggers : landing page, page de vente, sales page, page produit, créer une page, squeeze page."
+description: "Générateur de landing pages professionnelles avec Thank You page, Privacy Policy et CGV intégrées en modales. Responsive, HTML standalone, CSS custom properties. Génère 2 fichiers : la landing page + la thank you page (slug unique non devinable). Pages légales en popup sans quitter la page. Bilingue FR/EN. Triggers : landing page, page de vente, sales page, page produit, créer une page, squeeze page, thank you page."
 user-invokable: true
-argument-hint: "[produit] [url_destination]"
+argument-hint: "[produit] [url_destination] [langue: fr|en]"
 allowed-tools: Read Write Bash Glob
 metadata:
   author: DP Créateur
-  version: "2.0.0"
+  version: "2.2.0"
   category: marketing
-  updated: 2026-04-13
+  updated: 2026-04-18
 ---
 
 # Landing Page — Sales Page Generator
 
-<!-- v2.0.0 | 2026-04-13 | Refonte complète : context intake avec brand identity, CSS custom properties, quality gates, error handling, cross-skill -->
+<!-- v2.2.0 | 2026-04-18 | Ajout : Thank You page (slug unique), Privacy Policy + CGV en modales popup, bilingue FR/EN -->
 
-Expert en conversion et web design pour DP Créateur. Génère des landing pages standalone professionnelles et responsives, optimisées pour la conversion.
+Expert en conversion et web design pour DP Créateur. Génère **2 fichiers HTML** : la landing page de vente + la thank you page post-achat. Les pages légales (Privacy Policy, CGV) s'ouvrent en popup sans quitter la page. Tout est bilingue (FR ou EN selon le projet).
 
 ## Quick Reference
 
 | Commande | Description |
 |----------|-------------|
-| `/dp-landing-page [produit]` | Lancer la création guidée complète |
+| `/dp-landing-page [produit]` | Créer landing page + thank you page (guidé) |
 | `/dp-landing-page express [produit]` | Mode rapide — 5 questions puis génération |
-| `/dp-landing-page lead-magnet [produit]` | Version optimisée pour capture d'emails (pas de prix) |
+| `/dp-landing-page lead-magnet [produit]` | Version capture d'emails (pas de prix) |
 | `/dp-landing-page from [fichier]` | Générer depuis un contenu ou playbook existant |
+| `/dp-landing-page thank-you [landing.html]` | Créer une thank you page pour une landing existante |
 
 ## Output Format
 
 ```
-LIVRABLE :
-├── Fichier HTML standalone (landing-pages/[slug].html)
-│   ├── CSS embarqué avec custom properties (--primary, --accent, --style)
+LIVRABLES (2 fichiers) :
+│
+├── 1. Landing Page : landing-pages/[product-slug].html
+│   ├── CSS embarqué avec custom properties
 │   ├── Design responsive (mobile-first)
 │   ├── SEO meta tags + Open Graph
-│   └── Zéro dépendance JS (sauf Google Fonts optionnel)
-├── Sections : Hero → Trust → Promises → Details → Info Cards → FAQ → CTA → Footer
-└── Tous les CTA pointent vers la même URL de destination
+│   ├── Sections : Hero → Trust → Promises → Details → FAQ → CTA → Footer
+│   ├── Footer : Privacy Policy + CGV en modales popup (sans quitter la page)
+│   ├── Tous les CTA pointent vers la même URL de destination
+│   └── Zéro dépendance JS (sauf modales légères)
+│
+├── 2. Thank You Page : landing-pages/ty-[hash-unique].html
+│   ├── Même design system (couleurs, typo, style)
+│   ├── Message de remerciement + confirmation
+│   ├── Lien de téléchargement (optionnel)
+│   ├── Slug unique non devinable (hash aléatoire)
+│   └── Pas indexable (meta robots noindex)
+│
+└── Bilingue : contenu FR ou EN selon la langue du projet
 ```
 
 ---
@@ -109,12 +121,21 @@ SINON :
 
 **Après les réponses** : Synthèse contenu.
 
-#### Bloc 4 — La FAQ et le SEO
+#### Bloc 4 — Langue et Thank You Page
 
 | # | Question | Pourquoi |
 |---|----------|----------|
-| Q10 | Quelles sont les 3-5 questions que tes clients posent le plus ? | Section FAQ |
-| Q11 | Tu as un titre SEO en tête ? Et une meta description ? (sinon je les génère) | Balises meta |
+| Q10 | **Quelle langue** pour la page ? `fr` (français) ou `en` (anglais) | Texte des modales légales, labels, footer |
+| Q11 | Pour la **Thank You Page** : tu veux ajouter un **lien de téléchargement** ? Si oui, donne l'URL du fichier (PDF, ZIP…). Si non, la page affichera juste la confirmation. | Page post-achat |
+
+**Après les réponses** : Noter la langue et les options thank you page.
+
+#### Bloc 5 — La FAQ et le SEO
+
+| # | Question | Pourquoi |
+|---|----------|----------|
+| Q12 | Quelles sont les 3-5 questions que tes clients posent le plus ? | Section FAQ |
+| Q13 | Tu as un titre SEO en tête ? Et une meta description ? (sinon je les génère) | Balises meta |
 
 **Après les réponses** : Passer à la génération.
 
@@ -283,18 +304,393 @@ Si le mode `lead-magnet` est choisi, adapter la page :
 - **Social proof** : "Déjà [N] téléchargements" plutôt que "Déjà [N] clients"
 - **Footer CTA** : Rappel que c'est gratuit + urgence douce ("places limitées" ou "édition limitée")
 
-### 8. Footer
+### 8. Footer (avec liens légaux en modales)
 
 ```html
 <footer class="footer footer--dark">
   <h2>[footer_title]</h2>
   <p>[footer_subtitle]</p>
   <a href="[destination_url]" class="cta-button">[cta_button_text]</a>
-  <p class="copyright">&copy; [year] [brand_name]. All rights reserved.</p>
+  <div class="footer-legal">
+    <p class="copyright">&copy; [year] [brand_name]. All rights reserved.</p>
+    <nav class="legal-links">
+      <!-- FR -->
+      <a href="#" onclick="document.getElementById('modal-privacy').showModal(); return false;">Politique de confidentialité</a>
+      <span class="separator">|</span>
+      <a href="#" onclick="document.getElementById('modal-cgv').showModal(); return false;">Conditions générales de vente</a>
+      <!-- EN -->
+      <!-- <a href="#" onclick="document.getElementById('modal-privacy').showModal(); return false;">Privacy Policy</a> -->
+      <!-- <span class="separator">|</span> -->
+      <!-- <a href="#" onclick="document.getElementById('modal-cgv').showModal(); return false;">Terms & Conditions</a> -->
+    </nav>
+  </div>
 </footer>
 ```
 
-### 9. SEO (dans `<head>`)
+**Règles** :
+- Utiliser les labels FR si `lang="fr"`, EN si `lang="en"`
+- Les liens ouvrent des modales `<dialog>`, PAS de nouvelles pages
+- Le visiteur ne quitte JAMAIS la landing page
+
+### 8b. Modales — Pages Légales (Privacy Policy + CGV)
+
+Insérer les modales AVANT la fermeture de `</body>` :
+
+```html
+<!-- === MODAL : PRIVACY POLICY === -->
+<dialog id="modal-privacy" class="legal-modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="this.closest('dialog').close()">&times;</button>
+    <!-- FR -->
+    <h2>Politique de confidentialité</h2>
+    <!-- EN: <h2>Privacy Policy</h2> -->
+
+    <p><strong>Dernière mise à jour :</strong> [date]</p>
+
+    <h3>1. Collecte des données</h3>
+    <p>[brand_name] collecte les données personnelles suivantes lors de l'achat : nom, adresse email, données de paiement (traitées par [Stripe/Gumroad/LemonSqueezy — jamais stockées sur nos serveurs]). Ces données sont nécessaires à l'exécution de la commande et à la livraison du produit digital.</p>
+
+    <h3>2. Utilisation des données</h3>
+    <p>Vos données sont utilisées pour : la livraison du produit acheté, l'envoi d'emails relatifs à votre achat, l'amélioration de nos services. Nous ne vendons ni ne partageons vos données avec des tiers, sauf obligation légale.</p>
+
+    <h3>3. Cookies</h3>
+    <p>Ce site utilise des cookies de mesure d'audience (Google Analytics / Meta Pixel) et des cookies fonctionnels. Vous pouvez désactiver les cookies dans les paramètres de votre navigateur.</p>
+
+    <h3>4. Vos droits</h3>
+    <p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, d'effacement et de portabilité de vos données. Pour exercer ces droits : [email de contact].</p>
+
+    <h3>5. Contact</h3>
+    <p>Pour toute question : [email] — [brand_name], [adresse si applicable].</p>
+  </div>
+</dialog>
+
+<!-- === MODAL : CONDITIONS GÉNÉRALES DE VENTE === -->
+<dialog id="modal-cgv" class="legal-modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="this.closest('dialog').close()">&times;</button>
+    <!-- FR -->
+    <h2>Conditions générales de vente</h2>
+    <!-- EN: <h2>Terms & Conditions</h2> -->
+
+    <p><strong>Dernière mise à jour :</strong> [date]</p>
+
+    <h3>1. Objet</h3>
+    <p>Les présentes conditions régissent la vente du produit digital « [product_name] » par [brand_name].</p>
+
+    <h3>2. Produit</h3>
+    <p>Le produit « [product_name] » est un [ebook/playbook/guide] au format [PDF/HTML]. Il est livré par téléchargement immédiat après paiement. Le contenu est fourni en l'état et ne constitue pas un conseil [professionnel/médical/financier — adapter selon la niche].</p>
+
+    <h3>3. Prix et paiement</h3>
+    <p>Le prix est de [prix] TTC. Le paiement est sécurisé et traité par [Stripe/Gumroad/LemonSqueezy]. [brand_name] ne stocke aucune donnée bancaire.</p>
+
+    <h3>4. Livraison</h3>
+    <p>Le produit est livré immédiatement par email et/ou page de téléchargement après confirmation du paiement. En cas de problème de livraison, contacter [email].</p>
+
+    <h3>5. Droit de rétractation</h3>
+    <p>Conformément à l'article L221-28 du Code de la consommation, le droit de rétractation ne s'applique pas aux contenus numériques fournis sur un support immatériel dont l'exécution a commencé avec l'accord du consommateur. Toutefois, [brand_name] offre une garantie satisfait ou remboursé de [14/30] jours. Pour toute demande : [email].</p>
+
+    <h3>6. Propriété intellectuelle</h3>
+    <p>Le contenu du produit est protégé par le droit d'auteur. L'achat confère un droit d'utilisation personnel et non transférable. Toute reproduction, revente ou distribution est interdite.</p>
+
+    <h3>7. Responsabilité</h3>
+    <p>[brand_name] ne garantit pas de résultats spécifiques. Les résultats dépendent de l'application individuelle du contenu. Les témoignages présentés ne sont pas représentatifs de tous les utilisateurs.</p>
+
+    <h3>8. Contact</h3>
+    <p>[brand_name] — [email] — [adresse si applicable].</p>
+  </div>
+</dialog>
+```
+
+### CSS des modales (à ajouter dans le `<style>`)
+
+```css
+/* === Modales légales (Privacy + CGV) === */
+.legal-modal {
+  border: none;
+  border-radius: var(--radius);
+  max-width: 680px;
+  width: 90%;
+  max-height: 80vh;
+  padding: 0;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.legal-modal::backdrop {
+  background: rgba(0,0,0,0.6);
+}
+.modal-content {
+  padding: 2rem 2.5rem;
+  overflow-y: auto;
+  max-height: 80vh;
+}
+.modal-content h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+.modal-content h3 {
+  font-size: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+.modal-content p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+}
+.modal-close {
+  position: sticky;
+  top: 0;
+  float: right;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--muted);
+  padding: 0.5rem;
+  line-height: 1;
+  z-index: 10;
+}
+.modal-close:hover { color: var(--text); }
+
+/* Footer legal links */
+.footer-legal { margin-top: 1.5rem; }
+.legal-links { font-size: 0.8rem; margin-top: 0.5rem; }
+.legal-links a { color: rgba(255,255,255,0.6); text-decoration: none; }
+.legal-links a:hover { color: #fff; text-decoration: underline; }
+.legal-links .separator { margin: 0 0.5rem; color: rgba(255,255,255,0.3); }
+
+/* Si style premium (dark), adapter les modales */
+@media (prefers-color-scheme: dark) {
+  .legal-modal { background: var(--surface, #1a1a1a); }
+  .modal-content h2 { color: var(--accent); }
+  .modal-content p { color: #ccc; }
+}
+```
+
+### Adaptation bilingue des modales
+
+| Élément | Français (lang="fr") | English (lang="en") |
+|---------|---------------------|---------------------|
+| Lien footer 1 | "Politique de confidentialité" | "Privacy Policy" |
+| Lien footer 2 | "Conditions générales de vente" | "Terms & Conditions" |
+| Titre modal 1 | "Politique de confidentialité" | "Privacy Policy" |
+| Titre modal 2 | "Conditions générales de vente" | "Terms & Conditions" |
+| Sections Privacy | Collecte, Utilisation, Cookies, Droits, Contact | Collection, Usage, Cookies, Your Rights, Contact |
+| Sections CGV | Objet, Produit, Prix, Livraison, Rétractation, PI, Responsabilité, Contact | Purpose, Product, Price, Delivery, Refund Policy, IP, Liability, Contact |
+| Rétractation | Référence Code de la consommation FR | Reference consumer protection law (local) |
+| Fermer | &times; (universel) | &times; (universel) |
+
+**Règle** : Utiliser la langue définie dans Q10 (ou détectée depuis `<html lang="...">`). Ne JAMAIS mixer les langues dans une même modale.
+
+---
+
+### 9. Thank You Page (générée automatiquement)
+
+La thank you page est un **fichier HTML séparé** avec :
+- Le même design system (couleurs, typo, style)
+- Un **slug unique non devinable** (hash aléatoire)
+- Un meta `noindex` (pas indexable par Google)
+
+#### Génération du slug unique
+
+```bash
+# Générer un hash aléatoire de 12 caractères
+HASH=$(openssl rand -hex 6)
+# Résultat : ty-a3f7b2c91e04.html
+FILENAME="ty-${HASH}.html"
+```
+
+Le fichier est sauvegardé dans `landing-pages/ty-[hash].html`.
+
+#### Structure de la Thank You Page
+
+```html
+<!DOCTYPE html>
+<html lang="[fr/en]">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Merci — [product_name]</title>
+  <!-- EN: <title>Thank You — [product_name]</title> -->
+  <style>
+    /* MÊME CSS que la landing page (copier intégralement) */
+  </style>
+</head>
+<body>
+  <main class="thank-you">
+
+    <!-- Section 1 : Confirmation -->
+    <section class="hero thank-you-hero">
+      <div class="checkmark">✓</div>
+      <!-- FR -->
+      <h1>Merci pour ton achat !</h1>
+      <p class="subtitle">Ton accès à « [product_name] » est confirmé.</p>
+      <!-- EN -->
+      <!-- <h1>Thank you for your purchase!</h1> -->
+      <!-- <p class="subtitle">Your access to "[product_name]" is confirmed.</p> -->
+    </section>
+
+    <!-- Section 2 : Téléchargement (si lien fourni) -->
+    <!-- CONDITIONNEL : afficher seulement si Q11 a un lien de téléchargement -->
+    <section class="download-section">
+      <!-- FR -->
+      <h2>Télécharge ton [ebook/playbook/guide]</h2>
+      <p>Clique sur le bouton ci-dessous pour télécharger ton fichier. Tu recevras aussi un email de confirmation avec le lien.</p>
+      <a href="[download_url]" class="cta-button download-button">Télécharger maintenant</a>
+      <!-- EN -->
+      <!-- <h2>Download your [ebook/playbook/guide]</h2> -->
+      <!-- <p>Click the button below to download your file. You'll also receive a confirmation email with the link.</p> -->
+      <!-- <a href="[download_url]" class="cta-button download-button">Download Now</a> -->
+    </section>
+
+    <!-- Section 3 : Prochaines étapes -->
+    <section class="next-steps">
+      <!-- FR -->
+      <h2>Et maintenant ?</h2>
+      <div class="steps-list">
+        <div class="step">
+          <span class="step-number">1</span>
+          <div>
+            <h3>Ouvre ton [ebook/playbook]</h3>
+            <p>Lis la section "Lis ça d'abord" pour savoir par où commencer.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-number">2</span>
+          <div>
+            <h3>Applique dès aujourd'hui</h3>
+            <p>Commence par la première action de la Section 1. Pas demain — maintenant.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-number">3</span>
+          <div>
+            <h3>Besoin d'aide ?</h3>
+            <p>Réponds à l'email de confirmation. On lit tout.</p>
+          </div>
+        </div>
+      </div>
+      <!-- EN : adapter les textes -->
+    </section>
+
+    <!-- Section 4 : Social proof / partage (optionnel) -->
+    <section class="share-section">
+      <!-- FR -->
+      <p>Tu connais quelqu'un qui en a besoin ? Partage :</p>
+      <!-- EN: <p>Know someone who needs this? Share:</p> -->
+      <div class="share-buttons">
+        <a href="https://twitter.com/intent/tweet?text=[encoded_text]&url=[landing_page_url]" target="_blank" class="share-btn">Twitter</a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=[landing_page_url]" target="_blank" class="share-btn">LinkedIn</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer identique à la landing page -->
+  <footer class="footer footer--dark">
+    <p class="copyright">&copy; [year] [brand_name]</p>
+    <nav class="legal-links">
+      <a href="#" onclick="document.getElementById('modal-privacy').showModal(); return false;">[Privacy Policy / Politique de confidentialité]</a>
+      <span class="separator">|</span>
+      <a href="#" onclick="document.getElementById('modal-cgv').showModal(); return false;">[Terms / CGV]</a>
+    </nav>
+  </footer>
+
+  <!-- Mêmes modales légales que la landing page -->
+  <!-- COPIER les <dialog> modal-privacy et modal-cgv de la landing page -->
+
+</body>
+</html>
+```
+
+#### CSS spécifique Thank You Page (ajouter au style existant)
+
+```css
+/* Thank You Page */
+.thank-you-hero { text-align: center; padding: 4rem 2rem; }
+.checkmark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+.download-section {
+  text-align: center;
+  padding: 2rem;
+  background: var(--surface);
+  border-radius: var(--radius);
+  margin: 2rem auto;
+  max-width: 500px;
+}
+.download-button { margin-top: 1rem; }
+.next-steps { max-width: 600px; margin: 3rem auto; }
+.step {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: flex-start;
+}
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+.share-section { text-align: center; padding: 2rem; }
+.share-buttons { display: flex; gap: 0.75rem; justify-content: center; margin-top: 1rem; }
+.share-btn {
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 0.85rem;
+  transition: background 0.2s;
+}
+.share-btn:hover { background: var(--surface); }
+```
+
+### 10. SEO (dans `<head>`)
+
+**Règle** : Seule la landing page est indexable. La thank you page a `noindex`.
+
+```html
+<!-- Landing Page <head> -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[seo_title]</title>
+  <meta name="description" content="[seo_description]">
+  <meta property="og:title" content="[seo_title]">
+  <meta property="og:description" content="[seo_description]">
+  <meta property="og:type" content="product">
+  <meta property="og:image" content="[first product_image or empty]">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+
+<!-- Thank You Page <head> -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Merci — [product_name]</title>
+</head>
+```
 
 ```html
 <head>
@@ -341,17 +737,21 @@ Si le mode `lead-magnet` est choisi, adapter la page :
 | ID | Gate | Sévérité |
 |----|------|----------|
 | QG-01 | Aucun placeholder [TODO], [INSERT], Lorem ipsum | Critical |
-| QG-02 | Fichier HTML unique — aucun CSS, JS, ou image externe (sauf Google Fonts) | Critical |
+| QG-02 | CSS embarqué — aucun fichier externe (sauf Google Fonts) | Critical |
 | QG-03 | Tous les boutons CTA pointent vers la MÊME destination_url | Critical |
-| QG-04 | Toutes les couleurs utilisent `var(--primary)`, `var(--accent)`, etc. — jamais de hex hardcodé dans les composants | Critical |
-| QG-05 | Page responsive et professionnelle sur mobile (iPhone test mental) | Critical |
-| QG-06 | Pas de texte placeholder — si contenu manquant, le générer depuis le contexte produit | Critical |
+| QG-04 | Toutes les couleurs utilisent `var(--primary)`, `var(--accent)` — jamais de hex hardcodé | Critical |
+| QG-05 | Page responsive et professionnelle sur mobile | Critical |
+| QG-06 | Pas de texte placeholder — si contenu manquant, le générer depuis le contexte | Critical |
 | QG-07 | Balises SEO complètes (title, description, OG tags) | High |
 | QG-08 | HTML valide (tags fermés, structure correcte) | Critical |
-| QG-09 | Styles d'impression (@media print) inclus | Medium |
-| QG-10 | Parser `**bold**` en `<strong>` dans le contenu utilisateur | High |
-| QG-11 | Attribut lang correct sur `<html>` | High |
-| QG-12 | Le style visuel choisi (minimaliste/bold/premium/warm) est correctement appliqué | High |
+| QG-09 | **Privacy Policy ET CGV** présentes en modales `<dialog>` dans le footer | Critical |
+| QG-10 | **Les modales légales sont dans la MÊME langue** que la page (pas de mix FR/EN) | Critical |
+| QG-11 | **Thank You Page** générée avec slug unique (`ty-[hash].html`) et `noindex` | Critical |
+| QG-12 | Thank You Page utilise le **même design system** (couleurs, typo, style) | High |
+| QG-13 | Attribut `lang` correct sur `<html>` (landing ET thank you) | High |
+| QG-14 | Le style visuel choisi (minimaliste/bold/premium/warm) correctement appliqué aux 2 pages | High |
+| QG-15 | Le slug de la thank you page est **non devinable** (hash aléatoire, pas le nom du produit) | High |
+| QG-16 | Les modales se ferment avec le bouton ✕ et avec un clic en dehors (backdrop) | Medium |
 
 ---
 
@@ -367,8 +767,12 @@ Si le mode `lead-magnet` est choisi, adapter la page :
 | Pas de trust badges | Générer 3 badges génériques (ex: "Accès immédiat", "Satisfait ou remboursé", "Support email") |
 | Produit gratuit (lead magnet) | Adapter : pas de prix affiché, CTA = "Télécharger gratuitement", ajouter un champ email si possible |
 | business-profile.md absent | Continuer avec les réponses du context intake uniquement |
-| Contenu trop court | Compléter avec du contenu généré depuis la description produit. Prévenir l'utilisateur |
+| Contenu trop court | Compléter avec du contenu généré depuis la description produit |
 | Style "premium" demandé | Basculer tout le design en dark mode via les CSS custom properties |
+| Langue non précisée | Détecter depuis business-profile.md ou demander. Par défaut : FR |
+| Pas de lien de téléchargement pour la thank you page | Afficher la confirmation sans bouton de téléchargement |
+| L'utilisateur veut une thank you page pour une landing existante | Lire la landing page HTML existante, extraire les couleurs et le contenu, générer la thank you page cohérente |
+| Modales `<dialog>` non supportées par le navigateur | Ajouter un polyfill CSS minimal : `dialog[open] { display: block; }` pour les vieux navigateurs |
 
 ---
 
