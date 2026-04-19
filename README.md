@@ -1,11 +1,11 @@
 # DP Createur
 
-**La suite de skills Claude Code pour creer, lancer et vendre des produits digitaux.**
+**La suite complete de skills Claude Code pour creer, lancer et vendre des produits digitaux.**
 
-Creez un ebook de 60+ pages, une landing page, des campagnes publicitaires, une strategie de contenu blog, des sequences email et un plan media — le tout guide par des questions intelligentes et adapte a votre marque.
+De l'idee a la vente : validez votre marche, creez un ebook de 60+ pages, exportez en PDF, lancez votre landing page avec thank you page et pages legales, deployez vos campagnes ads, votre strategie blog SEO, vos emails de lancement, et maximisez votre revenu par client avec des upsells — le tout guide par des questions intelligentes et adapte a votre marque.
 
-[![Skills](https://img.shields.io/badge/skills-19-059669)](skills/)
-[![References](https://img.shields.io/badge/references-28-10b981)](skills/)
+[![Skills](https://img.shields.io/badge/skills-22-059669)](skills/)
+[![References](https://img.shields.io/badge/references-30+-10b981)](skills/)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-compatible-blueviolet)](https://claude.ai/code)
 
@@ -14,30 +14,61 @@ Creez un ebook de 60+ pages, une landing page, des campagnes publicitaires, une 
 ## Ce que fait DP Createur
 
 ```
-Idee → Ebook 60+ pages → PDF → Landing Page → Blog SEO → Ads → Email → Media Plan
+Idee → Validation → Ebook 60+ pages → Cover → PDF → Landing Page + Thank You
+  → Blog SEO → WordPress → Ads (Meta + Google) → Email → Media Plan → Upsells
 ```
 
-| Etape | Skill | Ce qu'il produit |
-|-------|-------|-----------------|
-| Configuration | `/dp-business-profile` | Profil business central (couleurs, voix, audience) |
-| Creation ebook | `/dp-playbook-create` | Ebook/playbook 60+ pages aux couleurs de votre marque |
-| Enrichissement | `/dp-playbook-section` | Sections supplementaires, exercices, templates |
-| Qualite | `/dp-playbook-audit` | Score qualite 0-100 avec issues priorisees |
-| Traduction | `/dp-playbook-sync` | Synchronisation FR ↔ EN |
-| Export | `/dp-export-pdf` | PDF professionnel pret a vendre |
-| Lead magnet | `/dp-lead-magnet-create` | Ressource gratuite (checklist, mini-guide) pour capturer des emails |
-| Vente | `/dp-landing-page` | Page de vente responsive avec CTA |
-| Funnel | `/dp-sales-funnel` | Architecture de funnel avec math de conversion |
-| Strategie blog | `/dp-blog-strategy` | Plan de 10-30 articles en topic clusters |
-| Articles SEO | `/dp-blog-article` | Articles optimises avec maillage interne et schema JSON-LD |
-| Publication | `/dp-blog-publish` | Publication directe sur WordPress via API REST |
-| Emails | `/dp-email-sequence` | Sequences email (welcome, launch, abandon, nurture) |
-| Captions | `/dp-social-caption` | Captions par plateforme (IG, LinkedIn, TikTok, FB, X) |
-| Plan media | `/dp-mediaplan` | Calendrier editorial 4 semaines avec briefs detailles |
-| Ads Meta | `/dp-ad-angles-meta` | Angles publicitaires Facebook/Instagram avec copies A/B |
-| Ads Google | `/dp-ad-angles-google` | Campagnes Google Search/YouTube/Display |
-| Concurrence | `/dp-competitor-analysis` | Analyse concurrentielle avec matrice et counter-angles |
-| Revue copy | `/dp-copy-review` | Audit et optimisation de tout type de copy |
+### Fondation
+
+| Skill | Ce qu'il produit |
+|-------|-----------------|
+| `/dp-business-profile` | Profil business central (couleurs, voix, audience) — lu par tous les skills |
+| `/dp-market-research` | Validation d'idee avec score 0-100 et verdict GO / TEST / STOP |
+
+### Creation du produit
+
+| Skill | Ce qu'il produit |
+|-------|-----------------|
+| `/dp-playbook-create` | Ebook/playbook 60+ pages aux couleurs de votre marque |
+| `/dp-playbook-section` | Sections supplementaires, exercices, templates |
+| `/dp-playbook-audit` | Score qualite 0-100 (HTML et PDF) avec issues priorisees |
+| `/dp-playbook-sync` | Synchronisation FR ↔ EN |
+| `/dp-export-pdf` | PDF professionnel (navigateur, Puppeteer, ou wkhtmltopdf) |
+| `/dp-ebook-cover` | Couverture HTML + mockup 3D CSS + prompts IA + brief Canva |
+| `/dp-lead-magnet-create` | Ressource gratuite (checklist, mini-guide, cheat sheet) |
+
+### Vente & Monetisation
+
+| Skill | Ce qu'il produit |
+|-------|-----------------|
+| `/dp-landing-page` | Page de vente + Thank You page + Privacy Policy + CGV en modales |
+| `/dp-sales-funnel` | Architecture de funnel avec math de conversion |
+| `/dp-upsell-strategy` | Echelle de valeur, order bump, upsell, downsell, affiliation, calcul LTV |
+
+### Contenu & SEO
+
+| Skill | Ce qu'il produit |
+|-------|-----------------|
+| `/dp-blog-strategy` | Plan de 10-30 articles en topic clusters avec maillage |
+| `/dp-blog-article` | Articles SEO avec E-E-A-T, schema JSON-LD, maillage interne |
+| `/dp-blog-publish` | Publication directe sur WordPress via API REST |
+
+### Promotion
+
+| Skill | Ce qu'il produit |
+|-------|-----------------|
+| `/dp-email-sequence` | Sequences email (welcome, launch, abandon, nurture, post-purchase) |
+| `/dp-social-caption` | Captions par plateforme (IG, LinkedIn, TikTok, FB, X) |
+| `/dp-mediaplan` | Calendrier editorial 4 semaines avec briefs detailles |
+| `/dp-ad-angles-meta` | Angles publicitaires Facebook/Instagram avec copies A/B |
+| `/dp-ad-angles-google` | Campagnes Google Search/YouTube/Display |
+
+### Analyse & Qualite
+
+| Skill | Ce qu'il produit |
+|-------|-----------------|
+| `/dp-competitor-analysis` | Analyse concurrentielle avec matrice et counter-angles |
+| `/dp-copy-review` | Audit et optimisation de tout type de copy |
 
 ---
 
@@ -50,61 +81,62 @@ Idee → Ebook 60+ pages → PDF → Landing Page → Blog SEO → Ads → Email
 ### Installation rapide
 
 ```bash
-# Cloner le repository
 git clone https://github.com/kabde/dp-createur.git
-
-# Aller dans le dossier
 cd dp-createur
 ```
 
 Claude Code detecte automatiquement les skills dans le dossier `skills/`.
 
-> Pour le guide d'installation detaille, consultez [INSTALL.md](INSTALL.md).
+> Guide detaille : [INSTALL.md](INSTALL.md)
 
 ---
 
-## Utilisation rapide
+## Demarrage rapide
 
-### 1. Configurer votre profil business (une seule fois)
+### 1. Configurer votre profil (une seule fois)
 
 ```
 /dp-business-profile
 ```
 
-Repond aux questions sur votre marque, vos couleurs, votre audience. Ce fichier est lu par tous les autres skills.
-
-### 2. Creer votre ebook
+### 2. Valider votre idee
 
 ```
-/dp-playbook-create [sujet de votre ebook]
+/dp-market-research [votre idee de produit]
 ```
 
-Le skill vous guide etape par etape :
-- Questions sur votre expertise et votre audience
-- Choix des couleurs et du style visuel
-- Generation du plan avec compteur de pages
-- Redaction section par section
-- Score qualite avant livraison
-
-### 3. Exporter en PDF
+### 3. Creer votre ebook
 
 ```
+/dp-playbook-create [sujet]
+```
+
+### 4. Creer la couverture + exporter en PDF
+
+```
+/dp-ebook-cover [titre]
 /dp-export-pdf [fichier.html]
 ```
 
-### 4. Creer la page de vente
+### 5. Creer la page de vente
 
 ```
 /dp-landing-page
 ```
 
-### 5. Lancer la promotion
+### 6. Lancer la promotion
 
 ```
-/dp-blog-strategy [niche]        # Planifier 20 articles
-/dp-email-sequence               # Creer la sequence de lancement
-/dp-ad-angles-meta               # Generer les ads Facebook/Instagram
-/dp-mediaplan                    # Planifier le contenu social
+/dp-blog-strategy [niche]
+/dp-email-sequence
+/dp-ad-angles-meta
+/dp-mediaplan
+```
+
+### 7. Maximiser le revenu
+
+```
+/dp-upsell-strategy
 ```
 
 ---
@@ -112,23 +144,27 @@ Le skill vous guide etape par etape :
 ## Workflow complet
 
 ```
-/dp-business-profile          Configurer (1x)
+/dp-business-profile         Configurer (1x)
         |
-/dp-playbook-create           Creer l'ebook (60+ pages)
+/dp-market-research          Valider l'idee (GO/TEST/STOP)
         |
-/dp-playbook-audit            Verifier la qualite
+/dp-playbook-create          Creer l'ebook (60+ pages)
         |
-/dp-export-pdf                Convertir en PDF
+/dp-playbook-audit           Verifier la qualite (HTML ou PDF)
         |
-   +---------+---------+
-   |         |         |
-/dp-landing  /dp-blog   /dp-email
-  -page      -strategy   -sequence
-   |         |         |
-   |    /dp-blog       |
-   |     -article      |
-   |         |         |
-   |    /dp-blog       |
+/dp-ebook-cover              Creer la couverture + mockup 3D
+        |
+/dp-export-pdf               Convertir en PDF
+        |
+   +---------+---------+---------+
+   |         |         |         |
+/dp-landing /dp-blog  /dp-email /dp-upsell
+  -page      -strategy  -sequence -strategy
+   |         |         |         |
+   |    /dp-blog       |     Order bump
+   |     -article      |     Upsell
+   |         |         |     Downsell
+   |    /dp-blog       |     Affiliation
    |     -publish      |
    |         |         |
    +---------+---------+
@@ -144,49 +180,11 @@ Le skill vous guide etape par etape :
 
 ## Chaque skill inclut
 
-- **Context intake** : questions guidees par blocs (jamais tout d'un coup)
+- **Context intake** : questions guidees par blocs, adapte au contexte du projet
 - **Quality gates** : regles strictes avec severite (Critical/High/Medium)
 - **Error handling** : scenarios d'erreur avec actions correctives
 - **Cross-skill integration** : chaque skill sait d'ou il vient et ou il va
-- **Fichiers de reference** : exemples concrets, templates de copy, standards SEO
-
----
-
-## Structure du projet
-
-```
-dp-createur/
-├── README.md                    Ce fichier
-├── INSTALL.md                   Guide d'installation detaille
-├── CONTRIBUTING.md              Guide de contribution
-├── LICENSE                      Licence MIT
-├── CLAUDE.md                    Instructions pour Claude Code
-├── business-profile.md          Votre profil (genere par dp-business-profile)
-│
-└── skills/
-    ├── dp-business-profile/
-    │   ├── SKILL.md             Definition du skill
-    │   └── references/          Exemples et templates
-    │       └── profile-example.md
-    │
-    ├── dp-playbook-create/
-    │   ├── SKILL.md
-    │   └── references/
-    │       ├── design-system.md
-    │       ├── voice-guide.md
-    │       ├── quality-gates.md
-    │       ├── scoring-system.md
-    │       ├── product-types.md
-    │       ├── error-handling.md
-    │       └── example-section.md
-    │
-    ├── dp-landing-page/
-    │   ├── SKILL.md
-    │   └── references/
-    │       └── copy-templates.md
-    │
-    └── ... (19 skills au total)
-```
+- **Fichiers de reference** : exemples concrets bases sur un produit fictif (FitPro Academy)
 
 ---
 
@@ -196,7 +194,9 @@ Tous les exemples utilisent un produit fictif : **FitPro Academy** — "Le Playb
 
 | Output | Skill | Exemple |
 |--------|-------|---------|
+| Validation marche (score 77/100) | dp-market-research | [validation-example.md](skills/dp-market-research/references/validation-example.md) |
 | Section ebook (2000 mots) | dp-playbook-create | [example-section.md](skills/dp-playbook-create/references/example-section.md) |
+| Couvertures 5 styles | dp-ebook-cover | [cover-examples.md](skills/dp-ebook-cover/references/cover-examples.md) |
 | Copy landing page (3 prix) | dp-landing-page | [copy-templates.md](skills/dp-landing-page/references/copy-templates.md) |
 | 7 emails de lancement | dp-email-sequence | [launch-sequence-templates.md](skills/dp-email-sequence/references/launch-sequence-templates.md) |
 | 3 angles Meta Ads | dp-ad-angles-meta | [ad-copy-examples.md](skills/dp-ad-angles-meta/references/ad-copy-examples.md) |
@@ -204,6 +204,8 @@ Tous les exemples utilisent un produit fictif : **FitPro Academy** — "Le Playb
 | Strategie 20 articles | dp-blog-strategy | [strategy-example.md](skills/dp-blog-strategy/references/strategy-example.md) |
 | 7 briefs Instagram | dp-mediaplan | [post-briefs-example.md](skills/dp-mediaplan/references/post-briefs-example.md) |
 | Funnel complet avec math | dp-sales-funnel | [funnel-example.md](skills/dp-sales-funnel/references/funnel-example.md) |
+| Upsell strategy + LTV 100€ | dp-upsell-strategy | [upsell-example.md](skills/dp-upsell-strategy/references/upsell-example.md) |
+| Analyse concurrent | dp-competitor-analysis | [analysis-example.md](skills/dp-competitor-analysis/references/analysis-example.md) |
 
 ---
 
