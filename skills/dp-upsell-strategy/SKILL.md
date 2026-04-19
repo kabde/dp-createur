@@ -493,6 +493,143 @@ CROSS-SELL 3 :
 | Donner une raison spécifique | "Tu pourrais aussi aimer..." (trop vague) |
 | Limiter à 2-3 cross-sells max | Bombarder de 10 offres |
 
+### Cross-Sell Affilié — Monétiser sans créer de produit
+
+Le cross-sell affilié est un levier puissant : tu recommandes un outil ou un produit d'un partenaire via ton lien d'affiliation et tu touches une commission sur chaque vente — sans créer quoi que ce soit.
+
+#### Comment choisir un produit affilié
+
+| Critère | Seuil | Pourquoi |
+|---------|-------|----------|
+| Pertinence pour ton audience | Le client en a BESOIN pour appliquer ton produit | Sinon c'est du spam, pas une recommandation |
+| Tu l'as utilisé toi-même | Oui, obligatoire | Tu ne recommandes que ce que tu connais. Ta crédibilité en dépend. |
+| Commission | ≥ 20% (one-time) ou ≥ 15% (récurrent/mois) | En dessous, pas assez rentable pour l'effort |
+| Page de vente du partenaire | Professionnelle, bien convertie | Si sa page est mauvaise, tu perds des commissions ET de la crédibilité |
+| Support client du partenaire | Bon | Si le client a un problème, il viendra se plaindre chez TOI |
+| Cookie duration | ≥ 30 jours | Le client n'achète pas toujours immédiatement |
+
+#### Types de produits affiliés par niche
+
+| Type | Exemples | Commission typique | Revenu moyen/client |
+|------|----------|-------------------|---------------------|
+| Outils SaaS (récurrent) | ConvertKit, Systeme.io, Canva Pro, Notion | 20-30% récurrent/mois | 3-10€/mois passif |
+| Formations en ligne | Cours complémentaire d'un partenaire | 30-50% one-time | 15-50€ par vente |
+| Livres / Ebooks | Amazon, Gumroad d'un partenaire | 4-50% selon plateforme | 2-15€ par vente |
+| Équipement / Matériel | Amazon, boutiques spécialisées | 3-10% | 2-20€ par vente |
+| Services (hosting, design) | Hébergeurs, freelances, agences | 50-200€ flat ou 20-30% | 20-100€ par referral |
+
+#### Où placer les liens affiliés
+
+```
+PLACEMENTS RECOMMANDÉS (par efficacité décroissante)
+════════════════════════════════════════════════════
+
+1. DANS L'EBOOK — Section "Outils recommandés" ou Annexes
+   Placement  : tools-block ou annexe "Ressources"
+   Exemple    : "Pour créer ta landing page, j'utilise Systeme.io [lien affilié].
+                C'est l'outil que je recommande pour les coachs qui débutent."
+   Disclosure : Ajouter en bas de la section : "Ce lien est un lien affilié.
+                Si tu t'inscris via ce lien, je touche une commission — sans
+                surcoût pour toi. Je ne recommande que des outils que j'utilise."
+   Efficacité : ★★★★★ (le lecteur est engagé et applique)
+
+2. DANS LA THANK YOU PAGE — Section "Outils pour démarrer"
+   Placement  : Après le message de remerciement, avant le footer
+   Exemple    : "Pour appliquer le Playbook, tu auras besoin de :
+                ☐ Un outil email → Je recommande ConvertKit [lien]
+                ☐ Un outil de design → Canva Pro [lien]"
+   Efficacité : ★★★★☆ (le client vient de payer, il est en mode action)
+
+3. DANS LES EMAILS POST-ACHAT — Email J+3 ou J+5
+   Placement  : Email dédié "Les outils que j'utilise" ou P.S. dans un email de contenu
+   Exemple    : "P.S. — Tu me demandes souvent quel outil j'utilise pour [X].
+                C'est [Outil] — voici mon lien [lien affilié]. Tu as 30 jours
+                d'essai gratuit."
+   Efficacité : ★★★★☆ (contextualisé, pas agressif)
+
+4. DANS LES ARTICLES DE BLOG — Recommandations contextuelles
+   Placement  : Dans un article où l'outil est mentionné naturellement
+   Exemple    : "Pour cette étape, tu peux utiliser [Outil] [lien affilié]
+                (c'est celui que j'utilise depuis 3 ans)."
+   Efficacité : ★★★☆☆ (trafic froid, conversion plus faible)
+
+5. DANS UNE PAGE RESSOURCES DÉDIÉE — /outils ou /ressources
+   Placement  : Page standalone listant tous tes outils recommandés
+   Exemple    : Page avec 5-10 outils, chacun avec : nom, description, pourquoi
+                tu l'utilises, lien affilié, alternative gratuite
+   Efficacité : ★★★☆☆ (SEO long-terme, conversion modérée)
+```
+
+#### Disclosure légale (OBLIGATOIRE)
+
+```
+RÈGLES DE DISCLOSURE
+════════════════════
+
+RGPD / FTC / Loi française :
+Tu DOIS informer le lecteur que le lien est un lien d'affiliation.
+
+OÙ :
+  - À côté du lien (même paragraphe) OU
+  - En note de bas de section OU
+  - En footer de l'email
+
+FORMULATIONS ACCEPTÉES :
+  FR : "Ce lien est un lien affilié. Je touche une commission si tu
+       t'inscris via ce lien, sans surcoût pour toi."
+  FR court : "(lien affilié)"
+  EN : "This is an affiliate link. I earn a commission if you sign up
+       through this link, at no extra cost to you."
+  EN court : "(affiliate link)"
+
+FORMULATIONS INTERDITES :
+  ❌ Aucune mention (illégal)
+  ❌ Lien caché derrière un shortener sans disclosure
+  ❌ "Je ne gagne rien sur ce lien" (mensonge)
+```
+
+#### Tracking des liens affiliés
+
+```
+STRUCTURE D'URL RECOMMANDÉE
+════════════════════════════
+
+[URL_PARTENAIRE]?ref=[ton_id]&utm_source=[source]&utm_medium=affiliate&utm_campaign=[produit]
+
+Exemples :
+  Dans l'ebook    : ?ref=fitpro&utm_source=playbook&utm_medium=affiliate&utm_campaign=outils
+  Thank you page  : ?ref=fitpro&utm_source=thankyou&utm_medium=affiliate&utm_campaign=outils
+  Email J+3       : ?ref=fitpro&utm_source=email&utm_medium=affiliate&utm_campaign=post-achat
+  Blog            : ?ref=fitpro&utm_source=blog&utm_medium=affiliate&utm_campaign=[slug-article]
+  Page ressources : ?ref=fitpro&utm_source=ressources&utm_medium=affiliate&utm_campaign=outils
+
+→ Tu sauras EXACTEMENT d'où viennent tes commissions.
+```
+
+#### Impact sur le LTV
+
+```
+SIMULATION REVENU AFFILIÉ
+══════════════════════════
+
+Exemple : Tu recommandes ConvertKit (commission récurrente 30%)
+
+  Prix ConvertKit        : 29€/mois
+  Ta commission          : 8.70€/mois par inscription
+  Take rate estimé       : 12% de tes acheteurs s'inscrivent
+  Durée moyenne client   : 8 mois
+
+  Revenu par client affilié : 8.70€ × 8 mois = 69.60€
+  Pondéré par take rate     : 69.60€ × 12% = 8.35€/client
+
+  → +8.35€ de LTV par client, SANS créer de produit.
+  → Sur 100 clients/mois = 835€/mois en revenu passif affilié.
+
+AJOUT AU LTV TOTAL :
+  LTV sans affiliation  : 91.97€
+  LTV avec affiliation  : 100.32€ (+9%)
+```
+
 ---
 
 ## Step 8 — Séquence Email d'Ascension

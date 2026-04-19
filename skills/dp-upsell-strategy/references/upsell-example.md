@@ -163,7 +163,30 @@ vidéo 1h"       Sur candidature (appel découverte)
 
 ---
 
-## Calcul LTV
+## Cross-Sell Affilié — ConvertKit
+
+### Placement dans l'ebook (Section "Outils recommandés")
+
+> Pour envoyer tes emails de prospection et gérer ta liste de clients potentiels, j'utilise ConvertKit depuis 3 ans. C'est l'outil le plus simple pour un coach qui débute — pas de code, pas de prise de tête. [Inscris-toi ici](https://convertkit.com?ref=fitpro) — tu as 30 jours d'essai gratuit.
+>
+> *(Ce lien est un lien affilié. Je touche une commission si tu t'inscris via ce lien, sans surcoût pour toi.)*
+
+### Placement dans l'email J+3
+
+> **P.S.** — Tu me demandes souvent quel outil j'utilise pour les emails. C'est ConvertKit — simple, fiable, et gratuit jusqu'à 1000 abonnés. [Teste-le ici](https://convertkit.com?ref=fitpro&utm_source=email&utm_medium=affiliate&utm_campaign=post-achat). *(lien affilié)*
+
+### Revenus estimés
+
+```
+ConvertKit : 29€/mois × 30% commission = 8.70€/mois par inscription
+Take rate  : 12% des acheteurs du Playbook
+Durée      : 8 mois en moyenne
+Revenu/client : 8.70€ × 8 × 12% = 8.35€
+```
+
+---
+
+## Calcul LTV (mis à jour avec affiliation)
 
 ```
                               Prix    Take Rate    Revenu/client
@@ -172,19 +195,24 @@ Order Bump (Scripts DM)       19€       32%          6.08€
 Upsell (Accélérateur)         97€       14%         13.58€
 Downsell (Mini-cours)         47€     22%×86%        8.88€
 Cross-sell (Templates Canva)  19€       8%           1.52€
+Affilié (ConvertKit récurrent) —       12%           8.35€
 High-ticket (Coaching 1:1)   497€       3%          14.91€
                               ──────────────────────────────
-LTV PAR CLIENT                                      91.97€
+LTV PAR CLIENT                                     100.32€
 
 COMPARAISON :
   AVANT (Playbook seul)  : 47.00€ par client
-  APRÈS (échelle complète): 91.97€ par client
-  AUGMENTATION           : +96% (+44.97€)
+  APRÈS (échelle complète): 100.32€ par client
+  AUGMENTATION           : +113% (+53.32€)
+
+DONT REVENU PASSIF AFFILIÉ :
+  100 clients/mois × 8.35€ = 835€/mois en commissions récurrentes
+  Sans créer de produit. Sans support. Passif.
 
 IMPACT SUR L'ACQUISITION :
   Avant : CPA max = 23€ (marge 50% sur 47€)
-  Après : CPA max = 46€ (marge 50% sur 91.97€)
-  → Tu peux dépenser 2× PLUS en ads par client et rester rentable.
+  Après : CPA max = 50€ (marge 50% sur 100.32€)
+  → Tu peux dépenser 2.2× PLUS en ads par client et rester rentable.
 ```
 
 ---
